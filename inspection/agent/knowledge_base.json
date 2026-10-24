@@ -1,0 +1,57 @@
+{
+  "_meta": {
+    "purpose": "Small, curated defect knowledge base the inspection agent may cite. Policies are ILLUSTRATIVE project policies, not an industry standard; a real line would replace them with its own acceptance criteria.",
+    "version": "1.0"
+  },
+  "entries": [
+    {
+      "id": "KB-CAST-001",
+      "topic": "casting_dataset_label_semantics",
+      "applies_to": ["casting_kaggle"],
+      "text": "The casting dataset labels each impeller image only as 'ok' or 'defective'. It provides no defect subtype, bounding box or mask. Any subtype named in a report is therefore an unverified hypothesis and must be marked subtype_verified=false."
+    },
+    {
+      "id": "KB-CAST-002",
+      "topic": "casting_defect_types",
+      "applies_to": ["casting_kaggle"],
+      "text": "Defects described for this impeller casting process include blow holes, pinholes, burrs, shrinkage defects, mould material defects, pouring metal defects and metallurgical defects. Visually, blow holes/pinholes appear as small dark round cavities; burrs as thin raised edges near the rim or vanes; shrinkage as irregular depressions or cracks; mould material defects as rough or irregular surface texture."
+    },
+    {
+      "id": "KB-CAST-003",
+      "topic": "root_cause_hints",
+      "applies_to": ["casting_kaggle"],
+      "text": "Root-cause hints (hypotheses for the process engineer): blow holes/pinholes -> gas entrapment, insufficient venting, moist sand or binder; shrinkage -> inadequate feeding/risering or hot spots; burrs -> worn pattern or mould parting line; rough texture -> mould material breakdown or pouring temperature issues."
+    },
+    {
+      "id": "KB-POL-001",
+      "topic": "severity_policy",
+      "applies_to": ["*"],
+      "text": "Severity from the approximate Grad-CAM saliency area (fraction of image above 50% activation) of a detected defect: area >= 0.10 -> high; 0.03 <= area < 0.10 -> medium; area < 0.03 -> low. If no localisation is available, severity is 'medium' by default. Saliency is approximate and must be described as such.",
+      "rule": {"high": 0.10, "medium": 0.03}
+    },
+    {
+      "id": "KB-POL-002",
+      "topic": "action_policy",
+      "applies_to": ["*"],
+      "text": "Decision FLAG_FOR_REWORK for every detected defect. Recommended action by severity: high -> 'Remove from line and quarantine; scrap/rework disposition by quality engineer; log for root-cause analysis'; medium -> 'Remove from line for rework assessment; re-inspect the indicated region under raking light'; low -> 'Flag for rework assessment; re-inspect the indicated region to confirm'. PASS only when no defect is detected with high confidence."
+    },
+    {
+      "id": "KB-POL-003",
+      "topic": "escalation_policy",
+      "applies_to": ["*"],
+      "text": "ESCALATE to a human reviewer when: the model's defect probability lies inside the configured uncertainty band; the image looks out-of-distribution relative to the training data (intensity statistics far from the training set); the model is a demo or synthetic-only experimental model; or evidence is contradictory. Escalated parts are held, not passed."
+    },
+    {
+      "id": "KB-MVTEC-001",
+      "topic": "mvtec_label_semantics",
+      "applies_to": ["mvtec_ad", "mvtec_ad_hf_mirror"],
+      "text": "MVTec AD trains on defect-free images only; the detector outputs an anomaly score and map, not a defect class. The anomaly type names in the test set are used for evaluation only."
+    },
+    {
+      "id": "KB-NEU-001",
+      "topic": "neu_defect_types",
+      "applies_to": ["neu_surface"],
+      "text": "NEU classes: crazing (network of fine surface cracks), inclusion (embedded non-metallic particles), patches (irregular dark areas), pitted surface (small pits), rolled-in scale (oxide scale pressed into surface), scratches (linear marks)."
+    }
+  ]
+}

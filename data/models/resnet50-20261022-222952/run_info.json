@@ -1,0 +1,54 @@
+{
+  "run_id": "resnet50-20261022-222952",
+  "dataset_id": "casting_kaggle",
+  "dataset_version": "v20261022-221426",
+  "task": "binary_classification",
+  "classes": [
+    "ok",
+    "defective"
+  ],
+  "provenance": "trained_real",
+  "config": {
+    "dataset_id": "casting_kaggle",
+    "architecture": "resnet50",
+    "image_size": 224,
+    "epochs": 8,
+    "batch_size": 16,
+    "lr_head": 0.001,
+    "lr_backbone": 0.0001,
+    "weight_decay": 0.0001,
+    "class_weighted_loss": true,
+    "use_clahe": true,
+    "synthetic_runs": [],
+    "synthetic_only": false,
+    "seed": 42,
+    "num_workers": 0
+  },
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce GTX 1650 with Max-Q Design",
+  "n_train_real": 909,
+  "n_train_synthetic": 0,
+  "n_val_real": 196,
+  "n_test_real": 195,
+  "train_class_counts": {
+    "ok": 363,
+    "defective": 546
+  },
+  "class_weights": [
+    1.2520999908447266,
+    0.8324000239372253
+  ],
+  "started_at": "2026-10-22 22:29:52",
+  "status": "complete",
+  "mixed_precision": false,
+  "finished_at": "2026-10-22 22:34:05",
+  "best_epoch": 8,
+  "augmented_training_views": 7272,
+  "test_metrics_summary": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "roc_auc": 1.0
+  }
+}

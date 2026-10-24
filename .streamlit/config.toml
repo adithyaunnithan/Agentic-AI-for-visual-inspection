@@ -1,0 +1,9 @@
+[server]
+headless = true
+maxUploadSize = 10          # MB; the Inspect page checks the same limit
+# Spaces serve the app inside an iframe on another origin, where Streamlit's XSRF cookie check rejects
+# file uploads (HTTP 403). The demo has no logins or private state for XSRF to protect.
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false

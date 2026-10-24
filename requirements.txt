@@ -1,0 +1,15 @@
+# Public demo (Hugging Face Docker Space, CPU only). Same as ../requirements.txt except:
+#  - CPU builds of torch / torchvision from the PyTorch CPU index (no CUDA libraries in the image)
+#  - no python-pptx or playwright (the deck builder and screenshot tool are not deployed)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.11.0+cpu
+torchvision==0.26.0+cpu
+numpy>=2.4
+opencv-python-headless>=4.13
+pillow
+pandas>=3.0
+scikit-learn
+matplotlib
+requests
+streamlit>=1.50
+anthropic>=2.1
